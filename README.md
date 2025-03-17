@@ -1,7 +1,7 @@
 # Pixel Art Processor - Godot 4.4 图像处理工具
 
-![示例效果](demo.png)
-![示例效果](demo1.png)
+![示例效果](doc/demo.png)
+![示例效果](doc/demo1.png)
 
 ## 功能特性
 
@@ -28,11 +28,11 @@
 ### 系统架构
 ```mermaid
 graph TD
-    A[主界面] --> B[图像输入]
-    A --> C[处理管线]
-    C --> D{{像素化Shader}}
-    C --> E{{颜色量化Shader}}
-    C --> F[调色板系统]
-    F --> G[中位切分算法]
-    F --> H[动态UI生成]
-    A --> I[输出系统]
+	A[主界面] --> B[图像输入]
+	A --> C[处理管线]
+	C --> D{{像素化Shader}}
+	C --> E{{颜色量化Shader}}
+	C --> F[调色板系统]
+	F --> G[中位切分算法]
+	F --> H[动态UI生成]
+	A --> I[输出系统]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ygcsi2fe0nys"]
 
-[ext_resource type="Script" uid="uid://begusbuley4kh" path="res://pick_color.gd" id="1_kjys1"]
+[ext_resource type="Script" uid="uid://begusbuley4kh" path="res://src/pick_color.gd" id="1_kjys1"]
 
 [node name="ColorPickerButton" type="ColorPickerButton"]
 custom_minimum_size = Vector2(32, 32)

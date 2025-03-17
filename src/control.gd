@@ -1,6 +1,5 @@
 extends Control
-const PICK_COLOR = preload("res://pick_color.tscn")
-
+const PICK_COLOR = preload("res://src/pick_color.tscn")
 @onready var menu_button: MenuButton = %MenuButton
 @onready var inoput: TextureRect = %Inoput
 @onready var output: TextureRect = %Output  ##实际工作图
