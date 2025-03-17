@@ -1,0 +1,162 @@
+[gd_scene load_steps=7 format=4 uid="uid://brmyq6g6ki6fj"]
+
+[ext_resource type="Script" uid="uid://dv5bpwuw2hfgp" path="res://control.gd" id="1_062i8"]
+[ext_resource type="Shader" uid="uid://tgk02x1qps0t" path="res://pixel_color.gdshader" id="2_vo8rg"]
+[ext_resource type="Texture2D" uid="uid://bwm4cai2tcrf3" path="res://OIP-C (1).jpg" id="3_qjeo5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7k58r"]
+draw_center = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1pwgx"]
+shader = ExtResource("2_vo8rg")
+shader_parameter/pixel_level = 106
+shader_parameter/color_level = 8
+shader_parameter/use_palette = false
+shader_parameter/palette = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/palette_size = 8
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ln6dh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_062i8")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(324, 180)
+borderless = true
+always_on_top = true
+unfocusable = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png,*.jpg")
+use_native_dialog = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+unique_name_in_owner = true
+disable_3d = true
+own_world_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(1000, 2000)
+render_target_update_mode = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7k58r")
+
+[node name="Output" type="TextureRect" parent="SubViewport/PanelContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1pwgx")
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_ln6dh")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "菜单
+"
+item_count = 3
+popup/item_0/text = "打开"
+popup/item_0/id = 0
+popup/item_1/text = "保存"
+popup/item_1/id = 1
+popup/item_2/text = "退出"
+popup/item_2/id = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "像素化大小："
+
+[node name="HSliderPixel" type="HSlider" parent="VBoxContainer/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 10.0
+max_value = 512.0
+value = 50.0
+ticks_on_borders = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "颜色深度："
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSliderColor" type="HSlider" parent="VBoxContainer/HBoxContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 2.0
+max_value = 64.0
+value = 50.0
+ticks_on_borders = true
+
+[node name="ColorPaletteBox" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/ColorPaletteBox"]
+layout_mode = 2
+text = "生成主颜色"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Inoput" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("3_qjeo5")
+stretch_mode = 5
+
+[node name="Output2" type="TextureRect" parent="VBoxContainer/ScrollContainer/HBoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_1pwgx")
+layout_mode = 2
+texture = ExtResource("3_qjeo5")
+stretch_mode = 5
+
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/HBoxContainer/HSliderPixel" to="." method="_on_h_slider_pixel_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer2/HBoxContainer2/HSliderColor" to="." method="_on_h_slider_color_value_changed"]
+[connection signal="pressed" from="VBoxContainer/ColorPaletteBox/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ygcsi2fe0nys"]
+
+[ext_resource type="Script" uid="uid://begusbuley4kh" path="res://pick_color.gd" id="1_kjys1"]
+
+[node name="ColorPickerButton" type="ColorPickerButton"]
+custom_minimum_size = Vector2(32, 32)
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(0.631373, 0.654902, 0, 1)
+script = ExtResource("1_kjys1")
