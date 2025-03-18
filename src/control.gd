@@ -18,7 +18,6 @@ func _ready() -> void:
 	opt.index_pressed.connect(_on_index_pressed)
 	file_dialog.file_selected.connect(_on_file_selected)
 	
-
 func generate_palette():
 	palette_colors = []
 	var texture = output_2.texture

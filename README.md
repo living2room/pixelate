@@ -2,6 +2,7 @@
 
 ![示例效果](doc/demo.png)
 ![示例效果](doc/demo1.png)
+![示例效果](doc/界面.png)
 
 ## 功能特性
 
